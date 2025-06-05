@@ -11,4 +11,20 @@ class UserRepository {
     Logger().d(responseBody);
     return responseBody;
   }
+
+  Future<Map<String, dynamic>> login(String username, String password) async {
+    final requestBody = {"username": username, "password": password};
+
+    Response response = await dio.post("/login", data: requestBody);
+    Map<String, dynamic> responseBody = response.data;
+    Logger().d(responseBody);
+
+    // Header의 토큰을 body로 옮기기
+    String accessToken = "";
+    try {
+      accessToken = response.headers["Authorization"]![0];
+      responseBody["response"]["accessToken"] = accessToken;
+    } catch (e) {}
+    return responseBody;
+  }
 }
