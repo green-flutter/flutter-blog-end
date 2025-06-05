@@ -14,11 +14,11 @@ class LoginBody extends StatelessWidget {
         children: [
           const CustomLogo("Blog"),
           CustomAuthTextFormField(
-            text: "Username",
+            title: "Username",
           ),
           const SizedBox(height: mediumGap),
           CustomAuthTextFormField(
-            text: "Password",
+            title: "Password",
             obscureText: true,
           ),
           const SizedBox(height: largeGap),
