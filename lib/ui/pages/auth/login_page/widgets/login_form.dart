@@ -6,7 +6,6 @@ import 'package:flutter_blog/ui/widgets/custom_auth_text_form_field.dart';
 import 'package:flutter_blog/ui/widgets/custom_elavated_button.dart';
 import 'package:flutter_blog/ui/widgets/custom_text_button.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 
 class LoginForm extends ConsumerWidget {
   @override
@@ -14,7 +13,7 @@ class LoginForm extends ConsumerWidget {
     LoginFM fm = ref.read(loginProvider.notifier);
     LoginModel model = ref.watch(loginProvider);
 
-    Logger().d(model);
+    // Logger().d(model);
 
     return Form(
         child: Column(
