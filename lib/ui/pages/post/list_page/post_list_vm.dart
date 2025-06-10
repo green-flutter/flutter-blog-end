@@ -19,6 +19,14 @@ class PostListVM extends Notifier<PostListModel?> {
     return null;
   }
 
+  void notifyDeleteOne(int postId) {
+    PostListModel model = state!;
+
+    model.posts = model.posts.where((p) => p.id != postId).toList();
+
+    state = state!.copyWith(posts: model.posts);
+  }
+
   Future<void> init({int page = 0}) async {
     Map<String, dynamic> body = await PostRepository().getList(page: page);
     if (!body["success"]) {
@@ -28,14 +36,6 @@ class PostListVM extends Notifier<PostListModel?> {
       return;
     }
     state = PostListModel.fromMap(body["response"]);
-  }
-
-  void notifyDeleteOne(int postId) {
-    PostListModel model = state!;
-
-    model.posts = model.posts.where((p) => p.id != postId).toList();
-
-    state = state!.copyWith(posts: model.posts);
   }
 }
 
