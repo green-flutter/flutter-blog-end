@@ -4,12 +4,14 @@ class CustomTextFormField extends StatelessWidget {
   final String hint;
   final bool obscureText;
   final Function(String)? onChanged;
+  final String initialValue;
 
-  CustomTextFormField({required this.hint, this.obscureText = false, this.onChanged});
+  CustomTextFormField({required this.hint, this.obscureText = false, this.onChanged, this.initialValue = ""});
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       obscureText: obscureText,
       onChanged: onChanged,
       decoration: InputDecoration(

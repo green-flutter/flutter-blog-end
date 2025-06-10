@@ -3,7 +3,6 @@ import 'package:flutter_blog/data/model/post.dart';
 import 'package:flutter_blog/data/repository/post_repository.dart';
 import 'package:flutter_blog/main.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:logger/logger.dart';
 
 /// 1. 창고 관리자
 final postListProvider = NotifierProvider<PostListVM, PostListModel?>(() {
@@ -56,6 +55,18 @@ class PostListVM extends Notifier<PostListModel?> {
     state = state!.copyWith(posts: nextPosts);
     // 5. 글쓰기 화면 PoP
     Navigator.pop(mContext);
+  }
+
+  void notifyUpdate(Post post) {
+    List<Post> nextPosts = state!.posts.map((p) {
+      if (p.id == post.id) {
+        return post;
+      } else {
+        return p;
+      }
+    }).toList();
+
+    state = state!.copyWith(posts: nextPosts);
   }
 }
 

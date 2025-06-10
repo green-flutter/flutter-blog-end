@@ -7,9 +7,9 @@ class UserRepository {
     final requestBody = {"username": username, "email": email, "password": password};
 
     Response response = await dio.post("/join", data: requestBody);
-    Map<String, dynamic> responseBody = response.data;
-    Logger().d(responseBody);
-    return responseBody;
+    Map<String, dynamic> body = response.data;
+    Logger().d(body);
+    return body;
   }
 
   Future<Map<String, dynamic>> login(String username, String password) async {
@@ -21,8 +21,18 @@ class UserRepository {
 
     // 2. 통신
     Response response = await dio.post("/login", data: requestBody);
-    Map<String, dynamic> responseBody = response.data;
+    Map<String, dynamic> body = response.data;
 
-    return responseBody;
+    return body;
+  }
+
+  Future<Map<String, dynamic>> autoLogin(String accessToken) async {
+    Response response = await dio.post("/auto/login",
+        options: Options(
+          headers: {"Authorization": accessToken},
+        ));
+    Map<String, dynamic> body = response.data;
+
+    return body;
   }
 }
