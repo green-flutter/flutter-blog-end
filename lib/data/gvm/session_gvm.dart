@@ -122,7 +122,7 @@ class SessionGVM extends Notifier<SessionModel> {
 
     // 4. login 페이지 이동
     scaffoldKey.currentState!.openEndDrawer();
-    Navigator.pushNamed(mContext, "/login");
+    Navigator.pushNamedAndRemoveUntil(mContext, "/login", (route) => false);
   }
 }
 
